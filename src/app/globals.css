@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
+/* ============================================
+   TOWERBRIGHT DESIGN SYSTEM — Tailwind v4
+   ============================================ */
+
+/* Light Mode Tokens */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #F8F7F4;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F0EFEB;
+  --color-text: #0D0D0D;
+  --color-text-muted: #6B6B6B;
+  --color-text-subtle: #A8A8A0;
+  --color-accent: #1B4B7A;
+  --color-accent-2: #C8D8E8;
+  --color-silver: #B8BCC4;
+  --color-gold-touch: #D4C5A0;
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Dark Mode Tokens */
+.dark {
+  --color-bg: #080C10;
+  --color-surface: #0F1520;
+  --color-surface-2: #151D2B;
+  --color-text: #F2F0EC;
+  --color-text-muted: #8A9BB0;
+  --color-text-subtle: #4A5568;
+  --color-accent: #4A9EDB;
+  --color-accent-2: #1E3A5F;
+  --color-silver: #9BA8B8;
+  --color-gold-touch: #C8A96E;
+}
+
+/* Register tokens with Tailwind v4 */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-2: var(--color-surface-2);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-subtle: var(--color-text-subtle);
+  --color-accent: var(--color-accent);
+  --color-accent-2: var(--color-accent-2);
+  --color-silver: var(--color-silver);
+  --color-gold-touch: var(--color-gold-touch);
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-dm-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global base styles */
+* {
+  transition: background-color 0.5s var(--ease-luxury),
+              color 0.5s var(--ease-luxury),
+              border-color 0.5s var(--ease-luxury);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Grain texture overlay — adds analog warmth */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
