@@ -12,8 +12,8 @@ export function Footer() {
     <footer className="py-16 px-8 border-t border-[var(--color-silver)]/20">
       <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row items-start justify-between gap-12">
         <div>
-          <p className="font-[family-name:var(--font-dm-sans)] text-xl font-semibold text-[var(--color-text)] mb-2">
-            Tower<span className="text-[var(--color-silver)] font-normal">Bright</span>
+          <p className="font-[family-name:var(--font-dm-sans)] text-xl font-bold text-[var(--color-text)] mb-2">
+            Tower<span className="text-[var(--color-accent)]">Bright</span>
           </p>
           <p className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.15em] text-[var(--color-text-muted)]">
             Excellence is the Standard

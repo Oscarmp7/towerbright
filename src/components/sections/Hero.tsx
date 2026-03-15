@@ -32,8 +32,8 @@ export function Hero() {
         style={{ y: imageY, scale: imageScale }}
       >
         <Image
-          src="https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519818703-IMG_1935.jpeg"
-          alt="Luxury tower windows"
+          src="https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519820328-IMG_2170.jpeg"
+          alt="Luxury tower balcony with crystal-clear glass overlooking Brickell Miami skyline"
           fill
           priority
           className="object-cover"
