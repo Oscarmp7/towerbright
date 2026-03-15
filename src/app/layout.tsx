@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { cormorant, dmSans } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Nav } from "@/components/layout/Nav";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -30,7 +31,10 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${dmSans.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Nav />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
