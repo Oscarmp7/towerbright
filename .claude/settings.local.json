@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:norda.framer.website)",
+      "WebFetch(domain:towerbrightco.com)",
+      "Read(//c/Users/omato/OneDrive/Desktop/Dev/**)",
+      "Bash(rm \"C:/Users/omato/OneDrive/Desktop/Dev/TowerBright/package.json\")",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(rm -rf towerbright-temp)",
+      "Bash(timeout 15 npm run dev)"
+    ]
+  }
+}
