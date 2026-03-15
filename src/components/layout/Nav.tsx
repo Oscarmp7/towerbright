@@ -29,8 +29,8 @@ export function Nav() {
     >
       <div className="max-w-[1400px] mx-auto px-8 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3">
-          <span className="font-[family-name:var(--font-cormorant)] text-xl font-semibold tracking-wide text-[var(--color-text)]">
-            TOWER<span className="text-[var(--color-accent)]">BRIGHT</span>
+          <span className="font-[family-name:var(--font-dm-sans)] text-xl font-semibold tracking-wide text-[var(--color-text)]">
+            Tower<span className="text-[var(--color-silver)] font-normal">Bright</span>
           </span>
         </Link>
 

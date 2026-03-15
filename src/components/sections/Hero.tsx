@@ -1,5 +1,7 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 
 const fadeUp = (delay = 0) => ({
@@ -11,13 +13,44 @@ const fadeUp = (delay = 0) => ({
 const services = ['Window Cleaning', 'Balcony Polish', 'Marble Rejuvenation', 'Bathroom Polish']
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  // Parallax: image moves slower than scroll (0.4x speed)
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1])
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.55, 0.75])
+
   return (
-    <section className="relative min-h-screen flex flex-col justify-end pb-24 px-8 overflow-hidden">
-      {/* Background gradient mesh */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[var(--color-bg)]" />
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-end pb-24 px-8 overflow-hidden">
+      {/* Hero image with parallax */}
+      <motion.div
+        className="absolute inset-0 -z-10"
+        style={{ y: imageY, scale: imageScale }}
+      >
+        <Image
+          src="https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519818703-IMG_1935.jpeg"
+          alt="Luxury tower windows"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </motion.div>
+
+      {/* Dark overlay for readability — adapts to theme */}
+      <motion.div
+        className="absolute inset-0 -z-[5] bg-[var(--color-bg)]"
+        style={{ opacity: overlayOpacity }}
+      />
+
+      {/* Gradient mesh on top of overlay for depth */}
+      <div className="absolute inset-0 -z-[4]">
+        <div className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-[var(--color-bg)] to-transparent" />
         <div className="absolute top-0 right-0 w-[60%] h-[70%] bg-[radial-gradient(ellipse_at_center,var(--color-accent)/0.08,transparent_70%)]" />
-        <div className="absolute bottom-0 left-0 w-[40%] h-[40%] bg-[radial-gradient(ellipse_at_center,var(--color-silver)/0.08,transparent_70%)]" />
       </div>
 
       <div className="max-w-[1400px] mx-auto w-full">
