@@ -34,6 +34,8 @@ export const services = [
 
 export const properties = [
   { name: 'Aston Martin Residences', location: 'Miami, FL' },
+  { name: 'Brickell Heights', location: 'Miami, FL' },
+  { name: 'One Thousand Museum', location: 'Miami, FL' },
 ]
 
 export const portfolioImages = [
