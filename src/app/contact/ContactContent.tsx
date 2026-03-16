@@ -24,7 +24,7 @@ export function ContactContent() {
       name: (form.elements.namedItem('name') as HTMLInputElement).value,
       email: (form.elements.namedItem('email') as HTMLInputElement).value,
       phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      service: (form.elements.namedItem('service') as HTMLSelectElement).value,
+      service: (form.elements.namedItem('service') as HTMLInputElement).value,
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     }
 
