@@ -10,19 +10,19 @@ const inputClass =
 const labelClass =
   'font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3'
 
+const SERVICE_OPTIONS = [
+  { value: 'window-cleaning', label: 'Indoor Window Cleaning' },
+  { value: 'balcony-polish', label: 'Balcony Polish' },
+  { value: 'bathroom-polish', label: 'Bathroom Polish' },
+  { value: 'marble-rejuvenation', label: 'Marble Rejuvenation' },
+  { value: 'multiple', label: 'Multiple Services' },
+]
+
 export function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [service, setService] = useState('')
-
-  const serviceOptions = [
-    { value: 'window-cleaning', label: 'Indoor Window Cleaning' },
-    { value: 'balcony-polish', label: 'Balcony Polish' },
-    { value: 'bathroom-polish', label: 'Bathroom Polish' },
-    { value: 'marble-rejuvenation', label: 'Marble Rejuvenation' },
-    { value: 'multiple', label: 'Multiple Services' },
-  ]
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -114,7 +114,7 @@ export function ContactContent() {
                   <CustomSelect
                     id="service"
                     name="service"
-                    options={serviceOptions}
+                    options={SERVICE_OPTIONS}
                     value={service}
                     onChange={setService}
                     placeholder="Select a service"

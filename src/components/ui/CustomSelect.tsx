@@ -150,7 +150,6 @@ export function CustomSelect({
             ref={listboxRef}
             id={listboxId}
             role="listbox"
-            aria-label="Service options"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
