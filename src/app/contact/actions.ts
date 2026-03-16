@@ -11,8 +11,23 @@ export interface ContactFormData {
   message: string
 }
 
-export async function submitContactForm(data: ContactFormData) {
-  const { name, email, phone, service, message } = data
+type ActionResult = { success: true } | { success: false; error: string }
+
+export async function submitContactForm(data: ContactFormData): Promise<ActionResult> {
+  const name = data.name.trim().slice(0, 100)
+  const email = data.email.trim().slice(0, 200)
+  const phone = data.phone.trim().slice(0, 30)
+  const service = data.service.trim().slice(0, 100)
+  const message = data.message.trim().slice(0, 2000)
+
+  // Basic email format check
+  if (!name || !email) {
+    return { success: false, error: 'Name and email are required.' }
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  if (!emailRegex.test(email)) {
+    return { success: false, error: 'Please enter a valid email address.' }
+  }
 
   const { error } = await resend.emails.send({
     from: 'TowerBright Website <no-reply@towerbrightco.com>',
@@ -33,7 +48,7 @@ ${message || '—'}
   })
 
   if (error) {
-    console.error('Resend error:', error)
+    console.error('Resend error:', error.message)
     return { success: false, error: 'Failed to send message. Please try WhatsApp or email directly.' }
   }
 

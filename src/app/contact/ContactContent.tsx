@@ -28,13 +28,17 @@ export function ContactContent() {
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
     }
 
-    const result = await submitContactForm(data)
-    setLoading(false)
-
-    if (result.success) {
-      setSubmitted(true)
-    } else {
-      setError(result.error ?? 'Something went wrong. Please try again.')
+    try {
+      const result = await submitContactForm(data)
+      if (result.success) {
+        setSubmitted(true)
+      } else {
+        setError(result.error ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -112,7 +116,7 @@ export function ContactContent() {
                 </div>
 
                 {error && (
-                  <p className="font-[family-name:var(--font-dm-sans)] text-sm text-red-400">{error}</p>
+                  <p role="alert" className="font-[family-name:var(--font-dm-sans)] text-sm text-red-400">{error}</p>
                 )}
 
                 <button
