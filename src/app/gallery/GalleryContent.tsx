@@ -1,11 +1,31 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { portfolioImages } from '@/lib/content'
 
 export function GalleryContent() {
   const [selected, setSelected] = useState<number | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
+
+  const close = useCallback(() => setSelected(null), [])
+
+  // Focus Close button when lightbox opens
+  useEffect(() => {
+    if (selected !== null) {
+      closeButtonRef.current?.focus()
+    }
+  }, [selected])
+
+  // Close on Escape
+  useEffect(() => {
+    if (selected === null) return
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') close()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [selected, close])
 
   return (
     <>
@@ -32,18 +52,19 @@ export function GalleryContent() {
         </div>
       </section>
 
-      {/* Masonry grid */}
+      {/* Masonry grid — 1 col mobile, 2 sm, 3 md+ */}
       <section className="pb-32 px-8">
-        <div className="max-w-[1400px] mx-auto columns-2 md:columns-3 gap-4 space-y-4">
+        <div className="max-w-[1400px] mx-auto columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
           {portfolioImages.map((img, i) => (
-            <motion.div
+            <motion.button
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.08 }}
-              className="overflow-hidden break-inside-avoid cursor-pointer group"
+              className="overflow-hidden break-inside-avoid cursor-pointer group w-full text-left"
               onClick={() => setSelected(i)}
+              aria-label={`View ${img.alt} full size`}
             >
               <Image
                 src={img.src}
@@ -53,7 +74,7 @@ export function GalleryContent() {
                 className="w-full object-cover group-hover:scale-105 transition-transform duration-700"
                 style={{ transitionTimingFunction: 'var(--ease-luxury)' }}
               />
-            </motion.div>
+            </motion.button>
           ))}
         </div>
       </section>
@@ -62,12 +83,15 @@ export function GalleryContent() {
       <AnimatePresence>
         {selected !== null && (
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={portfolioImages[selected].alt}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm cursor-pointer p-8"
-            onClick={() => setSelected(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-8"
+            onClick={close}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -85,8 +109,10 @@ export function GalleryContent() {
                 className="w-auto h-auto max-w-full max-h-[85vh] object-contain"
               />
               <button
-                onClick={() => setSelected(null)}
+                ref={closeButtonRef}
+                onClick={close}
                 className="absolute -top-12 right-0 text-white/60 hover:text-white text-sm font-[family-name:var(--font-dm-sans)] uppercase tracking-[0.15em] transition-colors duration-300"
+                aria-label="Close image"
               >
                 Close ✕
               </button>

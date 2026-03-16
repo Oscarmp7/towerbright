@@ -1,9 +1,56 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { submitContactForm } from './actions'
+import { CustomSelect } from '@/components/ui/CustomSelect'
+
+const inputClass =
+  'w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300'
+
+const labelClass =
+  'font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3'
+
+const SERVICE_OPTIONS = [
+  { value: 'window-cleaning', label: 'Indoor Window Cleaning' },
+  { value: 'balcony-polish', label: 'Balcony Polish' },
+  { value: 'bathroom-polish', label: 'Bathroom Polish' },
+  { value: 'marble-rejuvenation', label: 'Marble Rejuvenation' },
+  { value: 'multiple', label: 'Multiple Services' },
+]
 
 export function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [service, setService] = useState('')
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setLoading(true)
+    setError(null)
+
+    const form = e.currentTarget
+    const data = {
+      name: (form.elements.namedItem('name') as HTMLInputElement).value,
+      email: (form.elements.namedItem('email') as HTMLInputElement).value,
+      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
+      service: (form.elements.namedItem('service') as HTMLInputElement).value,
+      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
+    }
+
+    try {
+      const result = await submitContactForm(data)
+      if (result.success) {
+        setSubmitted(true)
+      } else {
+        setError(result.error ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <>
@@ -45,81 +92,55 @@ export function ContactContent() {
                   Thank you.
                 </p>
                 <p className="font-[family-name:var(--font-dm-sans)] text-[var(--color-text-muted)]">
-                  We'll be in touch within 24 hours.
+                  We&apos;ll be in touch within 24 hours.
                 </p>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  setSubmitted(true)
-                }}
-                className="space-y-8"
-              >
+              <form onSubmit={handleSubmit} className="space-y-8">
                 <div>
-                  <label className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    className="w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300"
+                  <label htmlFor="name" className={labelClass}>Name</label>
+                  <input id="name" name="name" type="text" required className={inputClass} />
+                </div>
+                <div>
+                  <label htmlFor="email" className={labelClass}>Email</label>
+                  <input id="email" name="email" type="email" required className={inputClass} />
+                </div>
+                <div>
+                  <label htmlFor="phone" className={labelClass}>Phone</label>
+                  <input id="phone" name="phone" type="tel" className={inputClass} />
+                </div>
+                <div>
+                  <label htmlFor="service" className={labelClass}>Service Interest</label>
+                  <CustomSelect
+                    id="service"
+                    name="service"
+                    options={SERVICE_OPTIONS}
+                    value={service}
+                    onChange={setService}
+                    placeholder="Select a service"
                   />
                 </div>
                 <div>
-                  <label className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    className="w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300"
-                  />
+                  <label htmlFor="message" className={labelClass}>Message</label>
+                  <textarea id="message" name="message" rows={4} className={`${inputClass} resize-none`} />
                 </div>
-                <div>
-                  <label className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300"
-                  />
-                </div>
-                <div>
-                  <label className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3">
-                    Service Interest
-                  </label>
-                  <select
-                    className="w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300"
-                  >
-                    <option value="">Select a service</option>
-                    <option value="window-cleaning">Indoor Window Cleaning</option>
-                    <option value="balcony-polish">Balcony Polish</option>
-                    <option value="bathroom-polish">Bathroom Polish</option>
-                    <option value="marble-rejuvenation">Marble Rejuvenation</option>
-                    <option value="multiple">Multiple Services</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)] block mb-3">
-                    Message
-                  </label>
-                  <textarea
-                    rows={4}
-                    className="w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300 resize-none"
-                  />
-                </div>
+
+                {error && (
+                  <p role="alert" className="font-[family-name:var(--font-dm-sans)] text-sm text-red-400">{error}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="font-[family-name:var(--font-dm-sans)] text-sm uppercase tracking-[0.15em] px-10 py-4 bg-[var(--color-accent)] text-white hover:opacity-90 transition-all duration-300"
+                  disabled={loading}
+                  className="font-[family-name:var(--font-dm-sans)] text-sm uppercase tracking-[0.15em] px-10 py-4 bg-[var(--color-accent)] text-white hover:opacity-90 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {loading ? 'Sending…' : 'Send Message'}
                 </button>
               </form>
             )}
           </motion.div>
 
-          {/* Contact info + Calendly placeholder */}
+          {/* Contact info + Calendly */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -160,12 +181,22 @@ export function ContactContent() {
             <div className="border border-[var(--color-silver)]/20 p-8">
               <p className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.18em] text-[var(--color-text-subtle)] mb-4">Schedule a Consultation</p>
               <p className="font-[family-name:var(--font-dm-sans)] text-sm text-[var(--color-text-muted)] mb-6">
-                Book a time that works for you. We'll assess your needs and provide a tailored quote.
+                Book a time that works for you. We&apos;ll assess your needs and provide a tailored quote.
               </p>
-              {/* Replace with Calendly inline widget when URL is provided */}
+              {/*
+                WHEN CLIENT PROVIDES CALENDLY URL:
+                1. Replace the div below with:
+                   <div
+                     className="calendly-inline-widget"
+                     data-url="https://calendly.com/CLIENT_USERNAME"
+                     style={{ minWidth: '320px', height: '630px' }}
+                   />
+                2. Add to layout.tsx <head>:
+                   <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
+              */}
               <div className="bg-[var(--color-surface-2)] h-[400px] flex items-center justify-center">
                 <p className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.15em] text-[var(--color-text-subtle)]">
-                  Calendly Widget — Coming Soon
+                  Calendly — Coming Soon
                 </p>
               </div>
             </div>

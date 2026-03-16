@@ -3,6 +3,7 @@ import { cormorant, dmSans } from "@/lib/fonts";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { Nav } from "@/components/layout/Nav";
+import { Footer } from "@/components/layout/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Nav />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

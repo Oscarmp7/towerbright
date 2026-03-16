@@ -12,7 +12,7 @@ export function Portfolio() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
             className="font-[family-name:var(--font-cormorant)] font-light italic text-[var(--color-text)]"
             style={{ fontSize: 'clamp(40px, 5vw, 72px)' }}
@@ -27,13 +27,13 @@ export function Portfolio() {
           </Link>
         </div>
 
-        <div className="columns-2 md:columns-3 gap-4 space-y-4">
+        <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
           {portfolioImages.map((img, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.08 }}
               className="overflow-hidden break-inside-avoid group"
             >

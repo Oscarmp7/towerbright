@@ -40,7 +40,7 @@ export function ServicesContent() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const }}
               className={`${i % 2 === 1 ? 'md:order-2' : ''}`}
             >
@@ -58,7 +58,7 @@ export function ServicesContent() {
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const, delay: 0.15 }}
               className={`${i % 2 === 1 ? 'md:order-1' : ''}`}
             >

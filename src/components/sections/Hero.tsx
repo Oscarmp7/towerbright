@@ -57,7 +57,7 @@ export function Hero() {
         {/* Pre-headline */}
         <motion.p
           {...fadeUp(0.2)}
-          className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.25em] text-[var(--color-accent)] mb-8"
+          className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.12em] md:tracking-[0.25em] text-[var(--color-accent)] mb-8 whitespace-nowrap"
         >
           Miami · Brickell · Luxury Residences
         </motion.p>
