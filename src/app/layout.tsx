@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     "premium apartment cleaning Miami",
     "Brickell Heights cleaning service",
   ],
-  authors: [{ name: "TowerBright", url: "https://towerbrightco.com" }],
+  authors: [{ name: "TowerBright", url: "/" }],
   creator: "TowerBright",
   publisher: "TowerBright",
   formatDetection: { telephone: false, email: false, address: false },
@@ -40,13 +40,13 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://towerbrightco.com",
+    canonical: "/",
   },
   openGraph: {
     title: "TowerBright — Premium Condo Cleaning Miami",
     description:
       "White-glove cleaning for luxury condominiums in Brickell & Miami. Trusted by Aston Martin Residences.",
-    url: "https://towerbrightco.com",
+    url: "/",
     siteName: "TowerBright",
     images: [
       {
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
     site: "@towerbrightco",
     images: ["/opengraph-image"],
   },
-  verification: {
-    google: "ADD_GOOGLE_SEARCH_CONSOLE_TOKEN_HERE",
-  },
+  ...(process.env.NEXT_PUBLIC_GSC_TOKEN && {
+    verification: { google: process.env.NEXT_PUBLIC_GSC_TOKEN },
+  }),
   category: "home services",
 };
 
