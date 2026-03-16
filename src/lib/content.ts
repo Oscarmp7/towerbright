@@ -43,3 +43,21 @@ export const portfolioImages = [
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819770-IMG_2162.jpeg', alt: 'Marble surface restored', tall: true },
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519820328-IMG_2170.jpeg', alt: 'Premium service detail', tall: false },
 ]
+
+export const testimonials = [
+  {
+    quote: "TowerBright transformed our unit at Aston Martin Residences. The level of detail and discretion is unlike anything we've experienced before.",
+    author: "R. Montenegro",
+    property: "Aston Martin Residences Miami",
+  },
+  {
+    quote: "We've been using them for two years. Every visit leaves the apartment looking better than the day we moved in. Truly white-glove service.",
+    author: "C. Alvarez",
+    property: "Brickell Heights",
+  },
+  {
+    quote: "The marble floors look absolutely pristine. They understand luxury materials — that makes all the difference.",
+    author: "A. Fontaine",
+    property: "Four Seasons Residences",
+  },
+]

@@ -4,6 +4,7 @@ import { Services } from '@/components/sections/Services'
 import { WhyUs } from '@/components/sections/WhyUs'
 import { Portfolio } from '@/components/sections/Portfolio'
 import { Properties } from '@/components/sections/Properties'
+import { Testimonials } from '@/components/sections/Testimonials'
 import { BookingCTA } from '@/components/sections/BookingCTA'
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <WhyUs />
       <Portfolio />
       <Properties />
+      <Testimonials />
       <BookingCTA />
     </main>
   )
