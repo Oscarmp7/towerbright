@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
+import { Logo } from '@/components/ui/Logo'
 
 const links = [
   { href: '/services', label: 'Services' },
@@ -43,9 +44,7 @@ export function Nav() {
         <div className="max-w-[1400px] mx-auto px-8 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3" onClick={() => setMenuOpen(false)}>
-            <span className="font-[family-name:var(--font-dm-sans)] text-xl font-bold tracking-wide text-[var(--color-text)]">
-              Tower<span className="text-[var(--color-accent)]">Bright</span>
-            </span>
+            <Logo variant="full" className="text-[var(--color-text)]" />
           </Link>
 
           {/* Desktop links */}
