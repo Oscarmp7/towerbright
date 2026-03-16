@@ -27,7 +27,7 @@ export function Portfolio() {
           </Link>
         </div>
 
-        <div className="columns-2 md:columns-3 gap-4 space-y-4">
+        <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
           {portfolioImages.map((img, i) => (
             <motion.div
               key={i}
