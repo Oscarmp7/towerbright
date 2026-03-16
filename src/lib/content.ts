@@ -16,13 +16,13 @@ export const services = [
     id: 'balcony-polish',
     name: 'Balcony Polish',
     description: 'Your outdoor living space deserves the same immaculate standard as your interior. Full deep-clean, polish, and detail.',
-    image: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819324-IMG_1943.jpeg',
+    image: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819951-IMG_2149.jpeg',
   },
   {
     id: 'bathroom-polish',
     name: 'Bathroom Polish',
     description: 'Spa-level cleanliness. Every surface, fixture, and detail polished to a standard that reflects true luxury.',
-    image: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819951-IMG_2149.jpeg',
+    image: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819324-IMG_1943.jpeg',
   },
   {
     id: 'marble-rejuvenation',
@@ -40,8 +40,8 @@ export const properties = [
 
 export const portfolioImages = [
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519818703-IMG_1935.jpeg', alt: 'Window cleaning result', tall: true },
-  { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819324-IMG_1943.jpeg', alt: 'Balcony after polish', tall: false },
-  { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819951-IMG_2149.jpeg', alt: 'Bathroom detail', tall: false },
+  { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819951-IMG_2149.jpeg', alt: 'Balcony after polish', tall: false },
+  { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819324-IMG_1943.jpeg', alt: 'Glass surface detail', tall: false },
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819770-IMG_2162.jpeg', alt: 'Marble surface restored', tall: true },
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519820328-IMG_2170.jpeg', alt: 'Premium service detail', tall: false },
 ]

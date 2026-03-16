@@ -26,7 +26,7 @@ export function WhyUs() {
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0 }}
           className="font-[family-name:var(--font-dm-sans)] text-xs uppercase tracking-[0.25em] text-[var(--color-accent)] mb-20 text-center"
         >
           Why TowerBright
@@ -38,7 +38,7 @@ export function WhyUs() {
               key={s.number}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.15 }}
             >
               <p className="font-[family-name:var(--font-cormorant)] text-6xl font-light text-[var(--color-silver)]/40 mb-6">{s.number}</p>
