@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { submitContactForm } from './actions'
+import { CustomSelect } from '@/components/ui/CustomSelect'
 
 const inputClass =
   'w-full bg-transparent border-b border-[var(--color-silver)]/40 focus:border-[var(--color-accent)] outline-none py-3 font-[family-name:var(--font-dm-sans)] text-[var(--color-text)] transition-colors duration-300'
@@ -13,6 +14,15 @@ export function ContactContent() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [service, setService] = useState('')
+
+  const serviceOptions = [
+    { value: 'window-cleaning', label: 'Indoor Window Cleaning' },
+    { value: 'balcony-polish', label: 'Balcony Polish' },
+    { value: 'bathroom-polish', label: 'Bathroom Polish' },
+    { value: 'marble-rejuvenation', label: 'Marble Rejuvenation' },
+    { value: 'multiple', label: 'Multiple Services' },
+  ]
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -101,14 +111,14 @@ export function ContactContent() {
                 </div>
                 <div>
                   <label htmlFor="service" className={labelClass}>Service Interest</label>
-                  <select id="service" name="service" className={inputClass}>
-                    <option value="">Select a service</option>
-                    <option value="window-cleaning">Indoor Window Cleaning</option>
-                    <option value="balcony-polish">Balcony Polish</option>
-                    <option value="bathroom-polish">Bathroom Polish</option>
-                    <option value="marble-rejuvenation">Marble Rejuvenation</option>
-                    <option value="multiple">Multiple Services</option>
-                  </select>
+                  <CustomSelect
+                    id="service"
+                    name="service"
+                    options={serviceOptions}
+                    value={service}
+                    onChange={setService}
+                    placeholder="Select a service"
+                  />
                 </div>
                 <div>
                   <label htmlFor="message" className={labelClass}>Message</label>
