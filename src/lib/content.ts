@@ -44,6 +44,7 @@ export const portfolioImages = [
   { src: 'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519820328-IMG_2170.jpeg', alt: 'Premium service detail', tall: false },
 ]
 
+// TODO: Replace with real client quotes before launch
 export const testimonials = [
   {
     quote: "TowerBright transformed our unit at Aston Martin Residences. The level of detail and discretion is unlike anything we've experienced before.",

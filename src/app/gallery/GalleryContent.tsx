@@ -1,13 +1,21 @@
 'use client'
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { portfolioImages } from '@/lib/content'
 
 export function GalleryContent() {
   const [selected, setSelected] = useState<number | null>(null)
+  const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   const close = useCallback(() => setSelected(null), [])
+
+  // Focus Close button when lightbox opens
+  useEffect(() => {
+    if (selected !== null) {
+      closeButtonRef.current?.focus()
+    }
+  }, [selected])
 
   // Close on Escape
   useEffect(() => {
@@ -101,6 +109,7 @@ export function GalleryContent() {
                 className="w-auto h-auto max-w-full max-h-[85vh] object-contain"
               />
               <button
+                ref={closeButtonRef}
                 onClick={close}
                 className="absolute -top-12 right-0 text-white/60 hover:text-white text-sm font-[family-name:var(--font-dm-sans)] uppercase tracking-[0.15em] transition-colors duration-300"
                 aria-label="Close image"

@@ -18,7 +18,7 @@ export function Testimonials() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {testimonials.map((t, i) => (
             <motion.div
-              key={i}
+              key={t.author}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
