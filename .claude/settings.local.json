@@ -37,7 +37,25 @@
       "WebFetch(domain:registry.smithery.ai)",
       "WebFetch(domain:smithery.ai)",
       "WebFetch(domain:github.com)",
-      "WebSearch"
+      "WebSearch",
+      "mcp__github__get_pull_request_status",
+      "mcp__github__get_pull_request",
+      "Bash(netstat:*)",
+      "Bash(taskkill:*)",
+      "Bash(cmd //c \"taskkill /PID 23576 /F\")",
+      "Bash(cmd //c \"taskkill /F /IM node.exe\")",
+      "Bash(find /c/Users/omato/OneDrive/Desktop/Dev/Library/skills-library -type f -name SKILL.md ! -path */archived-irrelevant/*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(gh pr:*)",
+      "Read(//c/Program Files/**)",
+      "Bash(powershell.exe -Command \"Get-Command gh -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"where.exe gh\")",
+      "Bash(powershell.exe -Command \"winget list GitHub.cli 2>&1\")",
+      "Bash(git:*)",
+      "Bash(powershell.exe -Command \"\n\\\\$token = \\(cmdkey /list:git:https://github.com 2>&1\\)\nWrite-Host \\\\$token\n\")",
+      "Bash(printf:*)"
     ]
   }
 }

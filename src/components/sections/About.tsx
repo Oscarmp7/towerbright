@@ -3,9 +3,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
 
-// TODO: Replace with actual CEO image URL from Vercel blob storage
-const CEO_IMAGE_URL =
-  'https://wol7zpzfeh2wdhnp.public.blob.vercel-storage.com/briefs/1773519819770-IMG_2162.jpeg'
+const CEO_IMAGE_URL = '/images/angel-wolfram.jpg'
 
 const stats = [
   { value: '10+', label: 'Years of Excellence' },
