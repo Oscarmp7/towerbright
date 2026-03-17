@@ -25,7 +25,7 @@ export function Hero() {
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.55, 0.75])
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-end pb-24 px-8 overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen flex flex-col justify-end pt-28 pb-24 px-8 overflow-hidden">
       {/* Hero image with parallax */}
       <motion.div
         className="absolute inset-0 -z-10"
@@ -66,7 +66,7 @@ export function Hero() {
         <motion.h1
           {...fadeUp(0.4)}
           className="font-[family-name:var(--font-cormorant)] font-light italic text-[var(--color-text)] leading-[0.9] mb-8"
-          style={{ fontSize: 'clamp(72px, 10vw, 160px)' }}
+          style={{ fontSize: 'clamp(60px, min(10vw, 10vh), 160px)' }}
         >
           Excellence<br />
           <span className="not-italic font-semibold">is the</span><br />
