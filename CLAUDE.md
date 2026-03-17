@@ -46,8 +46,9 @@ src/
       Nav.tsx                  # Glassmorphism on scroll, hamburger mobile
       Footer.tsx               # En layout.tsx (todas las páginas lo heredan)
     sections/
-      Hero, TrustBar, Services, WhyUs, Portfolio, Properties
+      Hero, TrustBar, Services, WhyUs, About, Portfolio, Properties
       Testimonials, BookingCTA (orden en page.tsx)
+      About.tsx — sección CEO/empresa con parallax image + corner frames + stats + blockquote
   lib/
     content.ts                 # Todos los datos: services, properties, testimonials
     fonts.ts                   # Cormorant Garamond + DM Sans
@@ -61,15 +62,23 @@ src/
 - **Motion:** `ease: [0.16, 1, 0.3, 1]`, scroll reveals con `whileInView + viewport={{ once: true }}`
 - **Dark mode:** `next-themes` con `defaultTheme="system"` — usar `resolvedTheme` (no `theme`)
 
-## Estado actual (2026-03-16)
+## Estado actual (2026-03-17)
 
 - ✅ Sitio completo y funcional: Home, /services, /gallery, /contact
-- ✅ Formulario conectado a Resend (pendiente: cliente configura API key)
+- ✅ SEO avanzado: metadata, OG image, JSON-LD, robots.ts, sitemap con imágenes, site.webmanifest
+- ✅ Formulario conectado a Resend (pendiente: cliente configura API key en Vercel)
 - ✅ Logo SVG implementado (isotipo + wordmark)
+- ✅ Sección About/CEO implementada (Angel Wolfram — Founder & CEO)
+- ✅ Hero nav overlap fix (pt-28 + min(10vw,10vh) font clamp)
 - ✅ Playwright MCP disponible para inspección visual
-- ⏳ Calendly: pendiente que cliente entregue su URL
-- ⏳ PR dev → main pendiente
-- ⏳ Testimoniales: son placeholder — reemplazar con quotes reales del cliente
+- ✅ Deploy en producción: https://towerbright.vercel.app
+- ⏳ Calendly popup (Opción B): pendiente URL del cliente → instalar react-calendly
+- ⏳ CEO image: reemplazar placeholder en `About.tsx` (constante CEO_IMAGE_URL) con URL real del blob
+- ⏳ Testimoniales: placeholder — reemplazar con quotes reales del cliente
+- ⏳ NEXT_PUBLIC_GSC_TOKEN: agregar en Vercel env vars cuando cliente configure Google Search Console
+
+## CEO
+- Nombre: Angel Wolfram · Founder & CEO, TowerBright
 
 ## Propiedades que sirven
 
