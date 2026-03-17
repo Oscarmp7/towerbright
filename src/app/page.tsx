@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { Services } from "@/components/sections/Services";
 import { WhyUs } from "@/components/sections/WhyUs";
+import { About } from "@/components/sections/About";
 import { Portfolio } from "@/components/sections/Portfolio";
 import { Properties } from "@/components/sections/Properties";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -166,6 +167,7 @@ export default function Home() {
       <TrustBar />
       <Services />
       <WhyUs />
+      <About />
       <Portfolio />
       <Properties />
       <Testimonials />
